@@ -65,8 +65,8 @@ let package = Package(
                 .product(name: "NIOTestUtils", package: "swift-nio"),
                 .product(name: "NIOFoundationCompat", package: "swift-nio"),
                 .product(name: "Testing", package: "swift-testing"),
-            ],
-            swiftSettings: [.swiftLanguageMode(.v5)]
+            ]//,
+            //swiftSettings: [.swiftLanguageMode(.v5)]
         ),
         .testTarget(
             name: "AWSLambdaRuntimeTests",
