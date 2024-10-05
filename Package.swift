@@ -34,8 +34,8 @@ let package = Package(
                 .byName(name: "AWSLambdaRuntimeCore"),
                 .product(name: "NIOCore", package: "swift-nio"),
                 .product(name: "NIOFoundationCompat", package: "swift-nio"),
-            ],
-            swiftSettings: [.swiftLanguageMode(.v5)]
+            ]//,
+            //swiftSettings: [.swiftLanguageMode(.v5)]
         ),
         .target(
             name: "AWSLambdaRuntimeCore",
@@ -45,8 +45,8 @@ let package = Package(
                 .product(name: "NIOCore", package: "swift-nio"),
                 .product(name: "NIOConcurrencyHelpers", package: "swift-nio"),
                 .product(name: "NIOPosix", package: "swift-nio"),
-            ],
-            swiftSettings: [.swiftLanguageMode(.v5)]
+            ]//,
+           // swiftSettings: [.swiftLanguageMode(.v5)]
         ),
         .plugin(
             name: "AWSLambdaPackager",
@@ -74,8 +74,8 @@ let package = Package(
                 .byName(name: "AWSLambdaRuntimeCore"),
                 .byName(name: "AWSLambdaRuntime"),
                 .product(name: "Testing", package: "swift-testing"),
-            ],
-            swiftSettings: [.swiftLanguageMode(.v5)]
+            ]//,
+            //swiftSettings: [.swiftLanguageMode(.v5)]
         ),
         // testing helper
         .target(
@@ -100,8 +100,8 @@ let package = Package(
                 .product(name: "NIOHTTP1", package: "swift-nio"),
                 .product(name: "NIOCore", package: "swift-nio"),
                 .product(name: "NIOPosix", package: "swift-nio"),
-            ],
-            swiftSettings: [.swiftLanguageMode(.v5)]
+            ]//,
+          //  swiftSettings: [.swiftLanguageMode(.v5)]
         ),
     ]
 )
