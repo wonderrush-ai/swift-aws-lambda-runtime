@@ -7,7 +7,7 @@ ARG swift_version
 # dependencies
 RUN yum install -y wget perl-Digest-SHA
 RUN yum install -y lsof dnsutils netcat-openbsd net-tools curl jq # used by integration tests
-
+RUN yum install openssl-devel
 # tools
 RUN mkdir -p $HOME/.tools
 RUN echo 'export PATH="$HOME/.tools:$PATH"' >> $HOME/.profile
