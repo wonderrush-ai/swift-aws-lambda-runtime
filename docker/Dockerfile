@@ -9,9 +9,9 @@ RUN yum install -y wget perl-Digest-SHA
 RUN yum install -y lsof dnsutils netcat-openbsd net-tools curl jq # used by integration tests
 RUN yum install -y make
 
-RUN set -x \
+#RUN set -x \
  ### BUILD OpenSSL
- && wget --no-check-certificate -O /tmp/openssl-dude.tar.gz "https://github.com/openssl/openssl/releases/download/openssl-3.3.2/openssl-3.3.2.tar.gz" \
+ RUN wget --no-check-certificate -O /tmp/openssl-dude.tar.gz "https://github.com/openssl/openssl/releases/download/openssl-3.3.2/openssl-3.3.2.tar.gz" 
  && tar -xvf /tmp/openssl-dude.tar.gz -C /tmp/ \
  && rm -rf /tmp/openssl-dude.tar.gz \ 
  && cd /tmp/openssl-dude \
