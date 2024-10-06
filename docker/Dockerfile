@@ -7,7 +7,15 @@ ARG swift_version
 # dependencies
 RUN yum install -y wget perl-Digest-SHA
 RUN yum install -y lsof dnsutils netcat-openbsd net-tools curl jq # used by integration tests
-RUN yum install openssl
+
+RUN mkdir /tmp/openssl
+RUN cd /tmp/openssl
+RUN wget https://www.openssl.org/source/openssl-1.1.1s.tar.gz
+RUN tar xzvf openssl-1.1.1s.tar.gz
+RUN cd openssl-1.1.1s
+RUN ./config --prefix=/usr/local/openssl11 --openssldir=/usr/local/openssl11 shared zlib
+RUN make
+RUN sudo make install
 
 # tools
 RUN mkdir -p $HOME/.tools
