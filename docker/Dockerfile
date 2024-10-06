@@ -13,6 +13,8 @@ RUN cd /tmp/openssl
 RUN wget https://www.openssl.org/source/openssl-1.1.1s.tar.gz
 RUN tar xzvf openssl-1.1.1s.tar.gz
 RUN cd openssl-1.1.1s && ./config --prefix=/usr/local/openssl11 --openssldir=/usr/local/openssl11 shared zlib && make && make install
+ENV LDFLAGS -L/usr/local/opt/openssl/lib
+ENV CPPFLAGS -I/usr/local/opt/openssl/include
 
 # tools
 RUN mkdir -p $HOME/.tools
