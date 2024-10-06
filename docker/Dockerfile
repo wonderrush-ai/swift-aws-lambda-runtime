@@ -13,7 +13,7 @@ RUN cd /tmp/openssl
 
 RUN git clone https://github.com/openssl/openssl.git
 RUN cd openssl 
-RUN config --prefix=/usr/local/ssl --openssldir=/usr/local/ssl '-Wl,-rpath,$(LIBRPATH)' 
+RUN /tmp/openssl/config --prefix=/usr/local/ssl --openssldir=/usr/local/ssl '-Wl,-rpath,$(LIBRPATH)' 
 RUN make 
 RUN make install
 
