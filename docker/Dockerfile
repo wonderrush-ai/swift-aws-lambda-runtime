@@ -8,6 +8,7 @@ ARG swift_version
 RUN yum install -y wget perl-Digest-SHA
 RUN yum install -y lsof dnsutils netcat-openbsd net-tools curl jq # used by integration tests
 RUN yum install -y make
+RUN yum install openssl-devel
 RUN mkdir /tmp/openssl
 RUN cd /tmp/openssl
 
