@@ -16,7 +16,7 @@ RUN yum install -y make
  RUN tar -xvf /tmp/openssl-dude.tar.gz -C /tmp/ 
  RUN rm -rf /tmp/openssl-dude.tar.gz 
  
- RUN cd /tmp/openssl-dude 
+ WORKDIR /tmp/openssl-dude 
  RUN ./Configure linux-x86_64 shared
  
  RUN make \
