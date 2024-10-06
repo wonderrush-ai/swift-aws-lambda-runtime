@@ -8,6 +8,22 @@ ARG swift_version
 RUN yum install -y wget perl-Digest-SHA
 RUN yum install -y lsof dnsutils netcat-openbsd net-tools curl jq # used by integration tests
 RUN yum install -y make
+
+RUN set -x \
+ ### BUILD OpenSSL
+ && wget --no-check-certificate -O /tmp/openssl-dude.tar.gz "https://github.com/openssl/openssl/releases/download/openssl-3.3.2/openssl-3.3.2.tar.gz" \
+ && tar -xvf /tmp/openssl-dude.tar.gz -C /tmp/ \
+ && rm -rf /tmp/openssl-dude.tar.gz \ 
+ && cd /tmp/openssl-dude \
+ && ./Configure linux-x86_64 shared\
+ && make \
+ && make test \
+ && make install \
+ && cd .. \
+ && rm -rf openssl-dude
+ 
+ ENV PATH /usr/local/ssl/bin:$PATH
+ 
 #RUN yum install libssl-dev
 #RUN mkdir /tmp/openssl
 #RUN cd /tmp/openssl
