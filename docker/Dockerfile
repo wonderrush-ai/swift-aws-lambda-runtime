@@ -17,8 +17,8 @@ RUN config --prefix=/usr/local/ssl --openssldir=/usr/local/ssl '-Wl,-rpath,$(LIB
 RUN make 
 RUN make install
 
-ENV LDFLAGS -L/usr/local/opt/openssl/lib
-ENV CPPFLAGS -I/usr/local/opt/openssl/include
+#ENV LDFLAGS -L/usr/local/opt/openssl/lib
+#ENV CPPFLAGS -I/usr/local/opt/openssl/include
 
 # tools
 RUN mkdir -p $HOME/.tools
