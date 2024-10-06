@@ -8,15 +8,15 @@ ARG swift_version
 RUN yum install -y wget perl-Digest-SHA
 RUN yum install -y lsof dnsutils netcat-openbsd net-tools curl jq # used by integration tests
 RUN yum install -y make
-RUN yum install libssl-dev
-RUN mkdir /tmp/openssl
-RUN cd /tmp/openssl
+#RUN yum install libssl-dev
+#RUN mkdir /tmp/openssl
+#RUN cd /tmp/openssl
 
-RUN git clone https://github.com/openssl/openssl.git
-RUN cd openssl 
-RUN /tmp/openssl/config --prefix=/usr/local/ssl --openssldir=/usr/local/ssl '-Wl,-rpath,$(LIBRPATH)' 
-RUN make 
-RUN make install
+#RUN git clone https://github.com/openssl/openssl.git
+#RUN cd openssl 
+#RUN /tmp/openssl/config --prefix=/usr/local/ssl --openssldir=/usr/local/ssl '-Wl,-rpath,$(LIBRPATH)' 
+#RUN make 
+#RUN make install
 
 #ENV LDFLAGS -L/usr/local/opt/openssl/lib
 #ENV CPPFLAGS -I/usr/local/opt/openssl/include
