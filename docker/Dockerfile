@@ -10,9 +10,11 @@ RUN yum install -y lsof dnsutils netcat-openbsd net-tools curl jq # used by inte
 RUN yum install -y make
 RUN mkdir /tmp/openssl
 RUN cd /tmp/openssl
-RUN wget https://www.openssl.org/source/openssl-1.1.1s.tar.gz
-RUN tar xzvf openssl-1.1.1s.tar.gz
-RUN cd openssl-1.1.1s && ./config --prefix=/usr/local/openssl11 --openssldir=/usr/local/openssl11 shared zlib && make && make install
+
+RUN git clone https://github.com/openssl/openssl.git
+RUN cd openssl
+RUN ./config --prefix=/usr/local/ssl --openssldir=/usr/local/ssl '-Wl,-rpath,$(LIBRPATH)' & make & make install
+
 ENV LDFLAGS -L/usr/local/opt/openssl/lib
 ENV CPPFLAGS -I/usr/local/opt/openssl/include
 
