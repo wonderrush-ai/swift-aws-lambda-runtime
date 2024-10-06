@@ -13,7 +13,9 @@ RUN cd /tmp/openssl
 
 RUN git clone https://github.com/openssl/openssl.git
 RUN cd openssl
-RUN ./config --prefix=/usr/local/ssl --openssldir=/usr/local/ssl '-Wl,-rpath,$(LIBRPATH)' && make && make install
+RUN ./config --prefix=/usr/local/ssl --openssldir=/usr/local/ssl '-Wl,-rpath,$(LIBRPATH)' 
+RUN make 
+RUN make install
 
 ENV LDFLAGS -L/usr/local/opt/openssl/lib
 ENV CPPFLAGS -I/usr/local/opt/openssl/include
