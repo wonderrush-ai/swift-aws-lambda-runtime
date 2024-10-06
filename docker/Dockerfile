@@ -13,7 +13,7 @@ RUN cd /tmp/openssl
 RUN wget https://www.openssl.org/source/openssl-1.1.1s.tar.gz
 RUN tar xzvf openssl-1.1.1s.tar.gz
 RUN cd openssl-1.1.1s
-RUN ./config --prefix=/usr/local/openssl11 --openssldir=/usr/local/openssl11 shared zlib
+RUN config --prefix=/usr/local/openssl11 --openssldir=/usr/local/openssl11 shared zlib
 RUN make
 RUN sudo make install
 
