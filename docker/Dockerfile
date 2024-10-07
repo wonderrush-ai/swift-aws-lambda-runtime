@@ -14,10 +14,9 @@ RUN yum install -y make
  RUN wget --no-check-certificate -O /tmp/openssl-dude.tar.gz "https://github.com/openssl/openssl/releases/download/openssl-3.3.2/openssl-3.3.2.tar.gz" 
  
  RUN tar -xvf /tmp/openssl-dude.tar.gz -C /tmp/ 
- RUN rm -rf /tmp/openssl-dude.tar.gz 
- 
- WORKDIR /tmp/openssl-dude 
- RUN config linux-x86_64 shared
+ RUN rm -rf /tmp/openssl-dude.tar.gz \
+ && cd /tmp/openssl-dude \
+ && ./Configure linux-x86_64 shared\
  
  RUN make \
  && make test \
