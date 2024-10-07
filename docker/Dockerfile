@@ -43,6 +43,7 @@ ENV OPENSSL_DIR=/usr/local/ssl
 ENV CPPFLAGS="-I$OPENSSL_DIR/include"
 ENV LDFLAGS="-L$OPENSSL_DIR/lib"
 ENV PATH="$OPENSSL_DIR/bin:$PATH"
+ENV PKG_CONFIG_PATH="$OPENSSL_DIR/lib/pkgconfig"
 
 # tools
 RUN mkdir -p $HOME/.tools
