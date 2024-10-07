@@ -11,14 +11,17 @@ RUN yum install -y make
 
 #RUN set -x \
  ### BUILD OpenSSL
- RUN wget --no-check-certificate -O /tmp/openssl-dude.tar.gz "https://github.com/openssl/openssl/releases/download/openssl-3.3.2/openssl-3.3.2.tar.gz" 
+ #RUN wget --no-check-certificate -O /tmp/openssl-dude.tar.gz "https://github.com/openssl/openssl/releases/download/openssl-3.3.2/openssl-3.3.2.tar.gz" 
  
- RUN tar -xvf /tmp/openssl-dude.tar.gz -C /tmp/ 
- RUN rm -rf /tmp/openssl-dude.tar.gz 
- RUN cd /tmp/openssl-dude 
- RUN ./Configure linux-x86_64 shared
- 
- RUN make \
+ #RUN tar -xvf /tmp/openssl-dude.tar.gz -C /tmp/ 
+ #RUN rm -rf /tmp/openssl-dude.tar.gz 
+ #RUN cd /tmp/openssl-dude 
+ #RUN ./Configure linux-x86_64 shared
+
+RUN git clone https://github.com/openssl/openssl.git
+RUN cd openssl 
+RUN ./Configure linux-x86_64 shared
+RUN make \
  && make test \
  && make install \
  && cd .. \
