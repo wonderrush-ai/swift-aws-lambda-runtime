@@ -35,8 +35,14 @@ RUN ln -s /usr/local/ssl/bin/openssl /usr/bin/openssl
 
 ENV PATH /usr/local/ssl/bin:$PATH
 
-ENV LDFLAGS=-L/usr/local/opt/openssl/lib
-ENV CPPFLAGS=-I/usr/local/opt/openssl/include
+#ENV LDFLAGS=-L/usr/local/opt/openssl/lib
+#ENV CPPFLAGS=-I/usr/local/opt/openssl/include
+
+# Step 4: Set environment variables for OpenSSL headers and libraries
+ENV OPENSSL_DIR=/usr/local/ssl
+ENV CPPFLAGS="-I$OPENSSL_DIR/include"
+ENV LDFLAGS="-L$OPENSSL_DIR/lib"
+ENV PATH="$OPENSSL_DIR/bin:$PATH"
 
 # tools
 RUN mkdir -p $HOME/.tools
