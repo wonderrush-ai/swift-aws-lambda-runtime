@@ -7,7 +7,7 @@ ARG swift_version
 # dependencies
 RUN yum install -y wget perl-Digest-SHA
 RUN yum install -y lsof dnsutils netcat-openbsd net-tools curl jq # used by integration tests
-RUN yum install -y make
+RUN yum install -y make libuuid-devel 
 
 # Step 2: Install dependencies required to build OpenSSL
 RUN yum update -y && \
@@ -44,6 +44,21 @@ ENV CPPFLAGS="-I$OPENSSL_DIR/include"
 ENV LDFLAGS="-L$OPENSSL_DIR/lib"
 ENV PATH="$OPENSSL_DIR/bin:$PATH"
 ENV PKG_CONFIG_PATH="$OPENSSL_DIR/lib/pkgconfig"
+
+Step 7: Install libdispatch and corelibs-foundation (which includes CoreFoundation)
+RUN git clone https://github.com/apple/swift-corelibs-libdispatch.git && \
+    cd swift-corelibs-libdispatch && \
+    git checkout swift-5.7-branch && \
+    swift build && \
+    swift test && \
+    cp .build/release/libdispatch.so /usr/lib/libdispatch.so
+
+RUN git clone https://github.com/apple/swift-corelibs-foundation.git && \
+    cd swift-corelibs-foundation && \
+    git checkout swift-5.7-branch && \
+    swift build && \
+    cp .build/release/*.so /usr/lib/
+
 
 # tools
 RUN mkdir -p $HOME/.tools
