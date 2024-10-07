@@ -46,8 +46,9 @@ ENV PATH="$OPENSSL_DIR/bin:$PATH"
 ENV PKG_CONFIG_PATH="$OPENSSL_DIR/lib/pkgconfig"
 
 #Step 7: Install libdispatch and corelibs-foundation (which includes CoreFoundation)
-RUN git clone https://github.com/apple/swift-corelibs-libdispatch.git && \
-    cd swift-corelibs-libdispatch && \
+RUN git clone https://github.com/apple/swift-corelibs-libdispatch.git
+    
+RUN cd swift-corelibs-libdispatch && \
     git checkout release/5.10 && \
     sh autogen.sh && \
     ./configure && \
