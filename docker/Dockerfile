@@ -9,6 +9,32 @@ RUN yum install -y wget perl-Digest-SHA
 RUN yum install -y lsof dnsutils netcat-openbsd net-tools curl jq # used by integration tests
 RUN yum install -y make
 
+# Step 2: Install dependencies required to build OpenSSL
+RUN yum update -y && \
+    yum install -y \
+    gcc \
+    gcc-c++ \
+    make \
+    perl-core \
+    zlib-devel \
+    wget \
+    tar \
+    && yum clean all
+
+# Step 3: Define OpenSSL version and download it
+ENV OPENSSL_VERSION=1.1.1v
+RUN wget https://www.openssl.org/source/openssl-$OPENSSL_VERSION.tar.gz && \
+    tar -xzvf openssl-$OPENSSL_VERSION.tar.gz && \
+    cd openssl-$OPENSSL_VERSION && \
+    ./config --prefix=/usr/local/ssl --openssldir=/usr/local/ssl shared zlib && \
+    make && \
+    make install
+
+# Step 4: Ensure the OpenSSL binary is accessible globally
+RUN ln -s /usr/local/ssl/bin/openssl /usr/bin/openssl
+
+# Step 5: Verify installation
+RUN openssl version
 #RUN set -x \
  ### BUILD OpenSSL
  #RUN wget --no-check-certificate -O /tmp/openssl-dude.tar.gz "https://github.com/openssl/openssl/releases/download/openssl-3.3.2/openssl-3.3.2.tar.gz" 
