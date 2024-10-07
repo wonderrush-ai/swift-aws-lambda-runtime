@@ -21,6 +21,27 @@ RUN yum update -y && \
     tar \
     && yum clean all
 
+RUN yum update -y && \
+    yum install -y \
+    gcc \
+    gcc-c++ \
+    make \
+    perl-core \
+    zlib-devel \
+    wget \
+    tar \
+    git \
+    libcurl-devel \
+    libuuid-devel \
+    libicu-devel \
+    libxml2-devel \
+    libbsd-devel \
+    autoconf \
+    automake \
+    libtool \
+    pkgconfig \
+    && yum clean all
+    
 # Step 3: Define OpenSSL version and download it
 ENV OPENSSL_VERSION=1.1.1v
 RUN wget https://www.openssl.org/source/openssl-$OPENSSL_VERSION.tar.gz && \
