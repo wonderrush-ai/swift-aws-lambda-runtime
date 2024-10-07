@@ -54,11 +54,11 @@ RUN git clone https://github.com/apple/swift-corelibs-libdispatch.git && \
     make && \
     make install 
 
-RUN git clone https://github.com/apple/swift-corelibs-foundation.git && \
-    cd swift-corelibs-foundation && \
-    git checkout swift-5.7-branch && \
-    swift build && \
-    cp .build/release/*.so /usr/lib/
+#RUN git clone https://github.com/apple/swift-corelibs-foundation.git && \
+#    cd swift-corelibs-foundation && \
+#    git checkout swift-5.7-branch && \
+#    swift build && \
+#    cp .build/release/*.so /usr/lib/
 
 
 # tools
