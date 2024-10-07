@@ -49,9 +49,10 @@ ENV PKG_CONFIG_PATH="$OPENSSL_DIR/lib/pkgconfig"
 RUN git clone https://github.com/apple/swift-corelibs-libdispatch.git && \
     cd swift-corelibs-libdispatch && \
     git checkout release/5.10 && \
-    swift build && \
-    swift test && \
-    cp .build/release/libdispatch.so /usr/lib/libdispatch.so
+    sh autogen.sh && \
+    ./configure && \
+    make && \
+    make install 
 
 RUN git clone https://github.com/apple/swift-corelibs-foundation.git && \
     cd swift-corelibs-foundation && \
