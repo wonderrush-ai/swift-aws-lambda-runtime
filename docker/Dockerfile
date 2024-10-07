@@ -47,6 +47,8 @@ ENV PATH="$OPENSSL_DIR/bin:$PATH"
 # tools
 RUN mkdir -p $HOME/.tools
 RUN echo 'export PATH="$HOME/.tools:$PATH"' >> $HOME/.profile
+RUN echo 'ls $HOME'
+RUN echo 'ls $OPENSSL_DIR/include'
 
 # swiftformat (until part of the toolchain)
 
