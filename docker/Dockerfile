@@ -33,40 +33,10 @@ RUN wget https://www.openssl.org/source/openssl-$OPENSSL_VERSION.tar.gz && \
 # Step 4: Ensure the OpenSSL binary is accessible globally
 RUN ln -s /usr/local/ssl/bin/openssl /usr/bin/openssl
 
-# Step 5: Verify installation
-RUN openssl version
-#RUN set -x \
- ### BUILD OpenSSL
- #RUN wget --no-check-certificate -O /tmp/openssl-dude.tar.gz "https://github.com/openssl/openssl/releases/download/openssl-3.3.2/openssl-3.3.2.tar.gz" 
- 
- #RUN tar -xvf /tmp/openssl-dude.tar.gz -C /tmp/ 
- #RUN rm -rf /tmp/openssl-dude.tar.gz 
- #RUN cd /tmp/openssl-dude 
- #RUN ./Configure linux-x86_64 shared
+ENV PATH /usr/local/ssl/bin:$PATH
 
-RUN git clone https://github.com/openssl/openssl.git
-WORKDIR /openssl 
-RUN './Configure linux-x86_64 shared'
-RUN make \
- && make test \
- && make install \
- && cd .. \
- && rm -rf openssl-dude
- 
- ENV PATH /usr/local/ssl/bin:$PATH
- 
-#RUN yum install libssl-dev
-#RUN mkdir /tmp/openssl
-#RUN cd /tmp/openssl
-
-#RUN git clone https://github.com/openssl/openssl.git
-#RUN cd openssl 
-#RUN /tmp/openssl/config --prefix=/usr/local/ssl --openssldir=/usr/local/ssl '-Wl,-rpath,$(LIBRPATH)' 
-#RUN make 
-#RUN make install
-
-#ENV LDFLAGS -L/usr/local/opt/openssl/lib
-#ENV CPPFLAGS -I/usr/local/opt/openssl/include
+ENV LDFLAGS=-L/usr/local/opt/openssl/lib
+ENV CPPFLAGS=-I/usr/local/opt/openssl/include
 
 # tools
 RUN mkdir -p $HOME/.tools
