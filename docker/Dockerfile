@@ -7,7 +7,7 @@ ARG swift_version
 # dependencies
 RUN yum install -y wget perl-Digest-SHA
 RUN yum install -y lsof dnsutils netcat-openbsd net-tools curl jq # used by integration tests
-RUN yum install -y make libuuid-devel 
+RUN yum install -y make libuuid-devel zip
 
 # Step 2: Install dependencies required to build OpenSSL
 RUN yum update -y && \
