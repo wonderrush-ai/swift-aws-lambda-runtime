@@ -19,7 +19,7 @@ RUN yum install -y make
  #RUN ./Configure linux-x86_64 shared
 
 RUN git clone https://github.com/openssl/openssl.git
-RUN 'cd openssl' && './Configure linux-x86_64 shared'
+RUN 'cd openssl; ./Configure linux-x86_64 shared'
 RUN make \
  && make test \
  && make install \
